@@ -4,7 +4,7 @@ on:
   workflow_dispatch:  # Permite ejecutarlo manualmente desde GitHub
   push:
     tags:
-      - 'v*'  # Se ejecuta también al hacer push de un tag como v1.0, v2.3, etc.
+      - 'v*'  # También se ejecuta al hacer push de un tag como v1.0, v2.3, etc.
 
 jobs:
   build:
@@ -30,7 +30,7 @@ jobs:
         pyinstaller --onefile --windowed main.py --name parking_app
 
     - name: Upload .exe as artifact
-      uses: actions/upload-artifact@v3.1.2
+      uses: actions/upload-artifact@v3
       with:
         name: parking_app
         path: dist/parking_app.exe
@@ -52,4 +52,3 @@ jobs:
         files: ./dist/parking_app.exe
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
