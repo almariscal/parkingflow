@@ -1,0 +1,7 @@
+tkinter
+openpyxl
+pandas
+zipfile
+icalendar
+tkcalendar
+pyinstaller
