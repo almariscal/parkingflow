@@ -30,7 +30,7 @@ jobs:
         pyinstaller --onefile --windowed main.py --name parking_app
 
     - name: Upload .exe as artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: parking_app
         path: dist/parking_app.exe
