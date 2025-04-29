@@ -15,7 +15,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Set up Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v3
       with:
         python-version: '3.12'  # Usamos la versión de Python que más te convenga
 
@@ -29,7 +29,7 @@ jobs:
         pyinstaller --onefile --windowed main.py
 
     - name: Upload .exe as artifact
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v3
       with:
         name: my-app
         path: dist/tu_codigo.exe
