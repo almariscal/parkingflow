@@ -27,7 +27,7 @@ jobs:
 
     - name: Build .exe with PyInstaller
       run: |
-        pyinstaller --onefile --windowed main.py --name parking_app
+            pyinstaller --onefile --windowed main.py --name parking_app --hidden-import=tkcalendar --hidden-import=pandas --hidden-import=openpyxl
 
     - name: Upload .exe as artifact
       uses: actions/upload-artifact@v4
