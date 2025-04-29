@@ -23,6 +23,11 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
+        pip install openpyxl
+        pip install pandas
+        pip install zipfile
+        pip install icalendar
+        pip install tkcalendar
         pip install pyinstaller
 
     - name: Build .exe with PyInstaller
