@@ -1,10 +1,10 @@
 name: Build and Release
 
 on:
-  workflow_dispatch:  # Permite ejecutar el workflow manualmente desde GitHub
+  workflow_dispatch:  # Permite ejecutarlo manualmente desde GitHub
   push:
     tags:
-      - 'v*'
+      - 'v*'  # Se ejecuta también al hacer push de un tag como v1.0, v2.3, etc.
 
 jobs:
   build:
@@ -17,34 +17,39 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v3
       with:
-        python-version: '3.12'  # Usamos la versión de Python que más te convenga
+        python-version: '3.12'
 
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
+        pip install pyinstaller
 
-    - name: Generate .exe with PyInstaller
+    - name: Build .exe with PyInstaller
       run: |
-        pyinstaller --onefile --windowed main.py
+        pyinstaller --onefile --windowed main.py --name parking_app
 
     - name: Upload .exe as artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v3.1.2
       with:
-        name: my-app
-        path: dist/tu_codigo.exe
+        name: parking_app
+        path: dist/parking_app.exe
 
   release:
     needs: build
     runs-on: ubuntu-latest
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
 
-    - name: Create a release
-      id: release
+    steps:
+    - name: Download artifact
+      uses: actions/download-artifact@v3
+      with:
+        name: parking_app
+        path: ./dist
+
+    - name: Create GitHub Release
       uses: softprops/action-gh-release@v1
       with:
-        files: dist/tu_codigo.exe
+        files: ./dist/parking_app.exe
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
