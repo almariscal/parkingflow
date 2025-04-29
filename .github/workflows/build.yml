@@ -1,9 +1,10 @@
 name: Build and Release
 
 on:
+  workflow_dispatch:  # Permite ejecutar el workflow manualmente desde GitHub
   push:
     tags:
-      - 'v*'  # Esto hace que el flujo de trabajo se active cuando se cree un tag que empiece con 'v', por ejemplo v1.0.0
+      - 'v*'
 
 jobs:
   build:
