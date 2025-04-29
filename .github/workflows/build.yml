@@ -25,7 +25,7 @@ jobs:
 
     - name: Generate .exe with PyInstaller
       run: |
-        pyinstaller --onefile --windowed tu_codigo.py
+        pyinstaller --onefile --windowed main.py
 
     - name: Upload .exe as artifact
       uses: actions/upload-artifact@v2
